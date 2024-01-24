@@ -1,8 +1,10 @@
-# React + Vite
+# MERN Stack Open Art Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Welcome to the MERN Stack Open Art Gallery project! The project is developed by Andrei Nazarov, Daniele Maselli, and Vasco Godinho.
 
-Currently, two official plugins are available:
+## Technologies Used
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **MongoDB:** Store and manage artwork data efficiently.
+- **Express.js:** Power the backend to handle requests and serve data.
+- **React.js:** Create a dynamic and interactive user interface.
+- **Node.js:** Facilitate server-side scripting for the application.
