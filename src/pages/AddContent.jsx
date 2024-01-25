@@ -14,7 +14,15 @@ const AddContent = () => {
     const createArtwork = { title, author, pages };
 
     try {
-      const response = await fetchWithToken("");
+      //change the path once we have the backend done
+      const response = await fetchWithToken("/", "POST", createArtwork);
+      if (response.status === 201) {
+        const artwork = await response.json();
+        console.log(artwork);
+        navigate(`/`);
+      } else {
+        console.log("Something is wrong");
+      }
     } catch (error) {
       console.log(error);
     }
