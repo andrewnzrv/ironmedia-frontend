@@ -30,7 +30,7 @@ const AuthForm = ({ isLogin = false }) => {
       if (response.status === 200) {
         const parsed = await response.json();
         console.log(parsed);
-        saveToken(parsed.token);
+        saveToken(parsed.authToken);
         navigate("/");
       }
     } catch (error) {
