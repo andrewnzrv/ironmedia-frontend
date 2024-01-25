@@ -10,11 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.3",
-    "@mantine/core": "^7.4.2",
-    "@mantine/form": "^7.4.2",
-    "@mantine/hooks": "^7.4.2",
-    "dotenv": "^16.4.1",
+
     "jwt-decode": "^4.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -28,6 +24,7 @@
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.5",
+    "prettier": "^3.2.4",
     "vite": "^5.0.8"
   }
 }
