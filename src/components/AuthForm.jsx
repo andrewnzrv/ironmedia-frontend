@@ -24,6 +24,10 @@ const AuthForm = ({ isLogin = false }) => {
           body: JSON.stringify(reqBody),
         }
       );
+      if (response.status === 400) {
+        const parsed = await response.json();
+        console.log(parsed);
+      }
       if (response.status === 201) {
         navigate("/login");
       }

@@ -4,11 +4,15 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import AddContent from "./pages/AddContent";
 import About from "./pages/About";
+
+import Navbar from "./components/Navbar";
+
 import ContentDetail from "./pages/ContentDetail";
 
 function App() {
   return (
     <>
+      <Navbar />
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/about" element={<About />} />
