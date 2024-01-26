@@ -6,7 +6,8 @@ function Homepage() {
 
   const fetchArt = async () => {
     try {
-      const response = await fetch(`${import.meta.env.VITE_API_URL}/blogPosts`);
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/api/blog`);
+      console.log(response);
       if (response.ok) {
         const artData = await response.json();
         console.log(artData);

@@ -17,7 +17,7 @@ const AddContent = () => {
 
     try {
       const response = await fetchWithToken(
-        `/blogPosts`, // Fixed API URL
+        `/blog`, // Fixed API URL
         "POST",
         createArtwork
       );
