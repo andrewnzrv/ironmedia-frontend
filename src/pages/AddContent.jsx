@@ -2,29 +2,34 @@ import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
+const API_URL = import.meta.env.VITE_API_URL;
+
 const AddContent = () => {
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState(""); // Added state for content
   const [author, setAuthor] = useState("");
-  const [pages, setPages] = useState(0);
   const { fetchWithToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const createArtwork = { title, author, pages };
+    const createArtwork = { title, content, author };
 
     try {
-      //change the path once we have the backend done
-      const response = await fetchWithToken("/", "POST", createArtwork);
+      const response = await fetchWithToken(
+        `/blog-posts`, // Fixed API URL
+        "POST",
+        createArtwork
+      );
       if (response.status === 201) {
-        const artwork = await response.json();
-        console.log(artwork);
+        const artContent = await response.json();
+        console.log(artContent);
         navigate(`/`);
       } else {
-        console.log("Something is wrong");
+        console.log("Something went wrong");
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 
@@ -43,7 +48,12 @@ const AddContent = () => {
           value={title}
           onChange={(event) => setTitle(event.target.value)}
         />
-
+        <label htmlFor="content">Content:</label> {/* Added content input */}
+        <textarea
+          id="content"
+          value={content}
+          onChange={(event) => setContent(event.target.value)}
+        />
         <label htmlFor="author">Author:</label>
         <input
           type="text"
@@ -51,15 +61,6 @@ const AddContent = () => {
           value={author}
           onChange={(event) => setAuthor(event.target.value)}
         />
-
-        <label htmlFor="pages">Pages:</label>
-        <input
-          type="text"
-          id="pages"
-          value={pages}
-          onChange={(event) => setPages(event.target.value)}
-        />
-
         <button type="submit">SUBMIT</button>
       </form>
     </>
