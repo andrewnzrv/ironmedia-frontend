@@ -30,6 +30,7 @@ function Homepage() {
           <li key={art._id}>
             <Link to={`/blog-post/${art._id}`}>
               <p>{art.title}</p>
+              <img className="img" src={art.imageFile} />
             </Link>
           </li>
         ))}

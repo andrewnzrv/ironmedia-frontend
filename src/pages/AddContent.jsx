@@ -8,12 +8,13 @@ const AddContent = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState(""); // Added state for content
   const [author, setAuthor] = useState("");
+  const [imageFile, setPostImage] = useState("");
   const { fetchWithToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const createArtwork = { title, content, author };
+    const createArtwork = { title, content, author, imageFile };
 
     try {
       const response = await fetchWithToken(
@@ -33,6 +34,13 @@ const AddContent = () => {
     }
   };
 
+  const handleFileUpload = async (event) => {
+    const file = event.target.files[0];
+    const base64 = await convertToBase64(file);
+    console.log(base64);
+    setPostImage(base64);
+  };
+
   return (
     <>
       <h1>New Artwork</h1>
@@ -47,6 +55,15 @@ const AddContent = () => {
           id="title"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
+        />
+        <label htmlFor="image">Image</label>
+        <input
+          type="file"
+          label="Image"
+          name="myFile"
+          id="file-upload"
+          accept=".jpeg, .png, .jpg"
+          onChange={(event) => handleFileUpload(event)}
         />
         <label htmlFor="content">Content:</label> {/* Added content input */}
         <textarea
@@ -68,3 +85,16 @@ const AddContent = () => {
 };
 
 export default AddContent;
+
+function convertToBase64(file) {
+  return new Promise((resolve, reject) => {
+    const fileReader = new FileReader();
+    fileReader.readAsDataURL(file);
+    fileReader.onload = () => {
+      resolve(fileReader.result);
+    };
+    fileReader.onerror = (error) => {
+      reject(error);
+    };
+  });
+}
