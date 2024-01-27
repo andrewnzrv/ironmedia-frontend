@@ -19,7 +19,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/add" element={<AddContent />} />
-        <Route path="/detail" element={<ContentDetail />} />
+        <Route path="/artworks/:artworkId" element={<ContentDetail />} />
         <Route path="*" element={<p>404</p>} />
       </Routes>
     </>

@@ -4,7 +4,7 @@ import { AuthContext } from "../contexts/AuthContext";
 
 const ArtworkDetailPage = () => {
   const { artworkId } = useParams();
-  const [artwork, setArtworkId] = useState();
+  const [artwork, setArtwork] = useState();
   const { fetchWithToken, userId } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -12,11 +12,11 @@ const ArtworkDetailPage = () => {
     const fetchArtwork = async () => {
       try {
         const response = await fetch(
-          `${import.meta.env.VITE_API_URL}`
+          `${import.meta.env.VITE_API_URL}/api/blog/${artworkId}`
         ); /*/api/art */
         if (response.ok) {
           const artworkData = await response.json();
-          setBook(artworkData);
+          setArtwork(artworkData);
         } else {
           console.log("Something went wrong");
         }
@@ -30,7 +30,7 @@ const ArtworkDetailPage = () => {
 
   const handleDelete = async () => {
     try {
-      const response = await fetchWithToken(`${artworkId}`, "DELETE");
+      const response = await fetchWithToken(`/blog/${artworkId}`, "DELETE");
       if (response.status === 204) {
         navigate("/");
       }
@@ -41,13 +41,20 @@ const ArtworkDetailPage = () => {
 
   return (
     <>
-      <h1>ART WORK DETAILS</h1>
-      <p>{artwork.title}</p>
-      <p>{artwork.content}</p>
-      <p>{artwork.author}</p>
-      <button type="button" onClick={handleDelete}>
-        Delete
-      </button>
+      {artwork ? (
+        <>
+          <h1>ART WORK DETAILS</h1>
+          <p>{artwork.title}</p>
+          <img className="img" src={artwork.imageFile} />
+          <p>{artwork.content}</p>
+          <p>{artwork.author}</p>
+          <button type="button" onClick={handleDelete}>
+            Delete
+          </button>
+        </>
+      ) : (
+        <p>Loading...</p>
+      )}
     </>
   );
 };

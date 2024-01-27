@@ -28,7 +28,7 @@ function Homepage() {
       <ul>
         {art.map((art) => (
           <li key={art._id}>
-            <Link to={`/blog-post/${art._id}`}>
+            <Link to={`/artworks/${art._id}`}>
               <p>{art.title}</p>
               <img className="img" src={art.imageFile} />
             </Link>
