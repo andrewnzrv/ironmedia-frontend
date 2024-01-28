@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import { Grid } from "@mui/material";
+import { Paper } from "@mui/material";
+import { Container } from "@mui/material";
+import ArtCard from "../components/ArtCard";
 
 function Homepage() {
   const [art, setArt] = useState([]);
@@ -23,19 +29,22 @@ function Homepage() {
   }, []);
 
   return (
-    <div>
-      <h1> Artwork </h1>
-      <ul>
-        {art.map((art) => (
-          <li key={art._id}>
-            <Link to={`/artworks/${art._id}`}>
-              <p>{art.title}</p>
-              <img className="img" src={art.imageFile} />
-            </Link>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <Container maxWidth="xl" className="container">
+      <div className="cnt">
+        <h1 className="main-title">InfiniteCanvas</h1>
+        <div>
+          <Grid container spacing={3}>
+            {art.map((art) => (
+              <Grid item key={art._id} xs={12} md={6} lg={4}>
+                <Link to={`/artworks/${art._id}`}>
+                  <ArtCard art={art} />
+                </Link>
+              </Grid>
+            ))}
+          </Grid>
+        </div>
+      </div>
+    </Container>
   );
 }
 export default Homepage;

@@ -2,13 +2,32 @@
 
 body {
   font-family: "IBM Plex Sans", sans-serif;
+  margin: 0;
+  background-color: #ffffff;
 }
 
-.img {
-  width: 50%;
+.main-title {
+  font-size: 3rem;
+  font-weight: 700;
+}
+
+h1 {
+  color: rgb(52, 51, 51);
 }
 
 li {
   list-style: none;
   text-decoration: none;
+}
+
+img {
+  width: 50%;
+}
+
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
