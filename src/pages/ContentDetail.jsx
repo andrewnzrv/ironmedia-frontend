@@ -1,6 +1,7 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import Button from "@mui/material/Button";
 
 const ArtworkDetailPage = () => {
   const { artworkId } = useParams();
