@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Button from "@mui/material/Button";
+import CommentSection from "../components/CommentSection";
 
 const ArtworkDetailPage = () => {
   const { artworkId } = useParams();
@@ -47,7 +48,7 @@ const ArtworkDetailPage = () => {
           <h1>{artwork.title}</h1>
           <img className="img" src={artwork.imageFile} />
           <p>{artwork.content}</p>
-          <p>{artwork.author}</p>
+          <p>{artwork.author.username}</p>
           <button type="button" onClick={handleDelete}>
             Delete
           </button>
@@ -55,6 +56,11 @@ const ArtworkDetailPage = () => {
           <Link to={`/artworks/${artwork._id}/update`}>
             <button type="button">Update</button>
           </Link>
+
+          <div>
+            <h2>Comments</h2>
+            <CommentSection artwork={artwork} />
+          </div>
         </>
       ) : (
         <p>Loading...</p>
