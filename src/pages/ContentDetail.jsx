@@ -44,14 +44,17 @@ const ArtworkDetailPage = () => {
     <>
       {artwork ? (
         <>
-          <h1>ART WORK DETAILS</h1>
-          <p>{artwork.title}</p>
+          <h1>{artwork.title}</h1>
           <img className="img" src={artwork.imageFile} />
           <p>{artwork.content}</p>
           <p>{artwork.author}</p>
           <button type="button" onClick={handleDelete}>
             Delete
           </button>
+
+          <Link to={`/artworks/${artwork._id}/update`}>
+            <button type="button">Update</button>
+          </Link>
         </>
       ) : (
         <p>Loading...</p>
