@@ -47,7 +47,6 @@ const ArtworkDetailPage = () => {
           <h1>{artwork.title}</h1>
           <img className="img" src={artwork.imageFile} />
           <p>{artwork.content}</p>
-          <p>{artwork.author}</p>
           <button type="button" onClick={handleDelete}>
             Delete
           </button>

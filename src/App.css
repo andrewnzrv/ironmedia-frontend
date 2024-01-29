@@ -6,6 +6,34 @@ body {
   background-color: #ffffff;
 }
 
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 40px;
+  padding-bottom: 30px;
+}
+
+.main-nav a {
+  margin-right: 100px;
+}
+
+.navbar a {
+  color: black; /* Change the text color for links as needed */
+  text-decoration: none;
+  gap: 10px;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+}
+
+.login a {
+  margin-left: 40px;
+  color: #090909; /* Change the text color for login links as needed */
+}
+
 .main-title {
   font-size: 3rem;
   font-weight: 900;
