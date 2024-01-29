@@ -1,54 +1,70 @@
-import { useContext, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import { useNavigate } from "react-router-dom";
-import Box from "@mui/material/Box";
-import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 
-const API_URL = import.meta.env.VITE_API_URL;
-
-const AddContent = () => {
+const ArtworkUpdatePage = () => {
+  const { artworkId } = useParams();
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState(""); // Added state for content
+  const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
   const [imageFile, setPostImage] = useState("");
+
   const { fetchWithToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const fetchOneArtwork = async () => {
+      try {
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/api/blog/${artworkId}`
+        ); /*/api/art */
+        if (response.ok) {
+          const artworkData = await response.json();
+          setTitle(artworkData.title);
+          setContent(artworkData.content);
+          setAuthor(artworkData.author);
+          setPostImage(artworkData.imageFile);
+        } else {
+          console.log("Something went wrong");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchOneArtwork();
+  }, [artworkId]);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const createArtwork = { title, content, author, imageFile };
 
     try {
-      const response = await fetchWithToken(
-        `/blog`, // Fixed API URL
-        "POST",
-        createArtwork
-      );
-      if (response.status === 201) {
-        const artContent = await response.json();
-        console.log(artContent);
+      const response = await fetchWithToken(`/blog/${artworkId}`, "PUT", {
+        title,
+        content,
+        author,
+        imageFile,
+      });
+      if (response.status === 200) {
         navigate(`/`);
-      } else {
-        console.log("Something went wrong");
       }
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
     const base64 = await convertToBase64(file);
-    console.log(base64);
     setPostImage(base64);
   };
 
   return (
     <>
-      <h1>New Artwork</h1>
+      <h1>Update ARTWORK</h1>
       <form
         onSubmit={handleSubmit}
-        action="submit"
         style={{ display: "flex", flexDirection: "column" }}
       >
         <label htmlFor="title">Title:</label>
@@ -58,6 +74,14 @@ const AddContent = () => {
           value={title}
           onChange={(event) => setTitle(event.target.value)}
         />
+
+        <label htmlFor="content">Content:</label>
+        <textarea
+          id="content"
+          value={content}
+          onChange={(event) => setContent(event.target.value)}
+        />
+
         <label htmlFor="image">Image</label>
         <input
           type="file"
@@ -67,26 +91,14 @@ const AddContent = () => {
           accept=".jpeg, .png, .jpg"
           onChange={(event) => handleFileUpload(event)}
         />
-        <label htmlFor="content">Content:</label> {/* Added content input */}
-        <textarea
-          id="content"
-          value={content}
-          onChange={(event) => setContent(event.target.value)}
-        />
-        <label htmlFor="author">Author:</label>
-        <input
-          type="text"
-          id="author"
-          value={author}
-          onChange={(event) => setAuthor(event.target.value)}
-        />
-        <button type="submit">SUBMIT</button>
+
+        <button type="submit">Update</button>
       </form>
     </>
   );
 };
 
-export default AddContent;
+export default ArtworkUpdatePage;
 
 function convertToBase64(file) {
   return new Promise((resolve, reject) => {
