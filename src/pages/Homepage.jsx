@@ -6,6 +6,7 @@ import { Grid } from "@mui/material";
 import { Paper } from "@mui/material";
 import { Container } from "@mui/material";
 import ArtCard from "../components/ArtCard";
+import Navbar from "../components/Navbar";
 
 function Homepage() {
   const [art, setArt] = useState([]);
@@ -31,6 +32,7 @@ function Homepage() {
   return (
     <Container maxWidth="xl" className="container">
       <div className="cnt">
+        <Navbar />
         <h1 className="main-title">InfiniteCanvas</h1>
         <div>
           <Grid container spacing={3}>
