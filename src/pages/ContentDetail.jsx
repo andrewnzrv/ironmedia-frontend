@@ -2,6 +2,8 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Button from "@mui/material/Button";
+import { Container } from "@mui/material";
+import Navbar from "../components/Navbar";
 
 const ArtworkDetailPage = () => {
   const { artworkId } = useParams();
@@ -44,16 +46,19 @@ const ArtworkDetailPage = () => {
     <>
       {artwork ? (
         <>
-          <h1>{artwork.title}</h1>
-          <img className="img" src={artwork.imageFile} />
-          <p>{artwork.content}</p>
-          <button type="button" onClick={handleDelete}>
-            Delete
-          </button>
+          <Container maxWidth="xl" className="container">
+            <Navbar />
+            <h1>{artwork.title}</h1>
+            <img className="img" src={artwork.imageFile} />
+            <p>{artwork.content}</p>
+            <button type="button" onClick={handleDelete}>
+              Delete
+            </button>
 
-          <Link to={`/artworks/${artwork._id}/update`}>
-            <button type="button">Update</button>
-          </Link>
+            <Link to={`/artworks/${artwork._id}/update`}>
+              <button type="button">Update</button>
+            </Link>
+          </Container>
         </>
       ) : (
         <p>Loading...</p>
