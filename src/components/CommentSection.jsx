@@ -6,7 +6,7 @@ import { AuthContext } from "../contexts/AuthContext";
 const CommentSection = () => {
   const { artworkId } = useParams();
   const [artwork, setArtwork] = useState();
-  const [commentUpdated, setCommentUpdated] = useState(false);
+  const [comments, setComments] = useState([]);
   const [content, setContent] = useState();
   const blogPost = artworkId;
   const { fetchWithToken } = useContext(AuthContext);
@@ -20,6 +20,7 @@ const CommentSection = () => {
         if (response.ok) {
           const artworkData = await response.json();
           setArtwork(artworkData);
+          setComments(artworkData.comments);
         } else {
           console.log("Something went wrong");
         }
@@ -29,30 +30,39 @@ const CommentSection = () => {
     };
 
     fetchComments();
-
-    setCommentUpdated(false);
-  }, [commentUpdated]);
+  }, []);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const createComment = { blogPost, content };
 
     try {
-      const response = await fetchWithToken(
-        `/comments`, // Fixed API URL
-        "POST",
-        createComment
-      );
+      const response = await fetchWithToken(`/comments`, "POST", createComment);
       if (response.status === 201) {
-        const commentContent = await response.json();
-        console.log(commentContent);
+        const newComment = await response.json();
+        setComments((comments) => [...comments, newComment]);
         setContent("");
-        setCommentUpdated(true);
       } else {
         console.log("Something went wrong");
       }
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const handleDelete = async (commentIdToDelete) => {
+    try {
+      const response = await fetchWithToken(
+        `/comments/${commentIdToDelete}`,
+        "DELETE"
+      );
+      if (response.status === 204) {
+        setComments((comments) =>
+          comments.filter((comment) => comment._id !== commentIdToDelete)
+        );
+      }
+    } catch (error) {
+      console.log(error + "ddsdasd");
     }
   };
 
@@ -75,11 +85,11 @@ const CommentSection = () => {
             <button type="submit">SUBMIT</button>
           </form>
 
-          {artwork.comments.map((comment) => (
+          {comments.map((comment) => (
             <SingleComment
               key={comment._id}
               comment={comment}
-              setCommentDeleted={setCommentUpdated}
+              handleDelete={handleDelete}
             />
           ))}
         </>
