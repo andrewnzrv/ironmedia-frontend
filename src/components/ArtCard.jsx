@@ -22,7 +22,6 @@ const ArtCard = ({ art }) => {
           avatar={<Avatar sx={{ bgcolor: blueGrey[300] }}></Avatar>}
           action={<IconButton></IconButton>} //add icon if u want
           title={<span style={{ color: "black" }}>{art.title}</span>}
-          username={username}
 
           //subheader={<span style={{ color: "white" }}>{art.createdAt}</span>}
         />
