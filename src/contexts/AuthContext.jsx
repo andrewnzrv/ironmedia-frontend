@@ -87,7 +87,6 @@ const AuthContextProvider = ({ children }) => {
         isAuthenticated,
         isLoading,
         fetchWithToken,
-        logout,
         userId,
         username,
         logout,

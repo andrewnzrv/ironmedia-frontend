@@ -7,8 +7,12 @@ import { CardMedia } from "@mui/material";
 import { Avatar } from "@mui/material";
 import { indigo } from "@mui/material/colors";
 import { red, blueGrey } from "@mui/material/colors";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 const ArtCard = ({ art }) => {
+  const { isAuthenticated, username, logout } = useContext(AuthContext);
+  console.log(art);
   return (
     <div>
       <Card
@@ -22,8 +26,7 @@ const ArtCard = ({ art }) => {
           avatar={<Avatar sx={{ bgcolor: blueGrey[300] }}></Avatar>}
           action={<IconButton></IconButton>} //add icon if u want
           title={<span style={{ color: "black" }}>{art.title}</span>}
-
-          //subheader={<span style={{ color: "white" }}>{art.createdAt}</span>}
+          //subheader={<span style={{ color: "black" }}>{art.username}</span>}
         />
         <CardMedia
           component="img"

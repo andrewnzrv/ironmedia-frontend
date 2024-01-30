@@ -1,9 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
 import { Grid } from "@mui/material";
-import { Paper } from "@mui/material";
 import { Container } from "@mui/material";
 import ArtCard from "../components/ArtCard";
 import Navbar from "../components/Navbar";

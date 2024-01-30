@@ -52,17 +52,24 @@ const ArtworkDetailPage = () => {
             <h1>{artwork.title}</h1>
             <img className="img" src={artwork.imageFile} />
             <p>{artwork.content}</p>
-            <button type="button" onClick={handleDelete}>
+            <Button
+              variant="outlined"
+              color="error"
+              type="button"
+              onClick={handleDelete}
+            >
               Delete
-            </button>
+            </Button>
 
             <Link to={`/artworks/${artwork._id}/update`}>
-              <button type="button">Update</button>
+              <Button variant="contained" type="button">
+                Update
+              </Button>
             </Link>
             <div>
-            <h2>Comments</h2>
-            <CommentSection artwork={artwork} />
-          </div>
+              <h2>Comments</h2>
+              <CommentSection artwork={artwork} />
+            </div>
           </Container>
         </>
       ) : (
