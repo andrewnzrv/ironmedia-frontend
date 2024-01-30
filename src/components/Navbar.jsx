@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import Button from "@mui/material/Button";
 
 const Navbar = () => {
   const { isAuthenticated, username, logout } = useContext(AuthContext);
@@ -17,13 +18,22 @@ const Navbar = () => {
       <div className="login">
         {isAuthenticated ? (
           <div>
-            <span>Welcome, {username}!</span>
-            <button type="button" onClick={logout}>
+            <span className="welcome-text">Welcome, {username}!</span>
+            <Button
+              type="button"
+              variant="outlined"
+              onClick={logout}
+              style={{ textTransform: "none" }}
+            >
               Logout
-            </button>
+            </Button>
           </div>
         ) : (
-          <Link to="/login">Log In</Link>
+          <Link to="/login">
+            <Button variant="outlined" style={{ textTransform: "none" }}>
+              Log in
+            </Button>
+          </Link>
         )}
       </div>
     </div>

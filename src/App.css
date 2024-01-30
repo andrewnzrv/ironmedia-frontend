@@ -14,6 +14,10 @@ body {
   padding-bottom: 30px;
 }
 
+.welcome-text {
+  margin-right: 20px;
+}
+
 .main-nav a {
   margin-right: 100px;
 }
