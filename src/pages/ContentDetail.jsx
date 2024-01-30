@@ -2,6 +2,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Button from "@mui/material/Button";
+import CommentSection from "../components/CommentSection";
 import { Container } from "@mui/material";
 import Navbar from "../components/Navbar";
 
@@ -58,6 +59,10 @@ const ArtworkDetailPage = () => {
             <Link to={`/artworks/${artwork._id}/update`}>
               <button type="button">Update</button>
             </Link>
+            <div>
+            <h2>Comments</h2>
+            <CommentSection artwork={artwork} />
+          </div>
           </Container>
         </>
       ) : (
