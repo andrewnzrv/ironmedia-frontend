@@ -8,13 +8,16 @@ const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState();
+  const [username, setUsername] = useState();
 
   const saveToken = (tokenFromLogin) => {
     setToken(tokenFromLogin);
     setIsAuthenticated(true);
     window.localStorage.setItem("authToken", tokenFromLogin);
-    const { userId } = jwtDecode(tokenFromLogin);
+
+    const { userId, username } = jwtDecode(tokenFromLogin);
     setUserId(userId);
+    setUsername(username);
   };
 
   const verifyToken = async (tokenFromLocalStorage) => {
@@ -26,8 +29,10 @@ const AuthContextProvider = ({ children }) => {
         setIsAuthenticated(true);
         setToken(tokenFromLocalStorage);
         setIsLoading(false);
-        const { userId } = jwtDecode(tokenFromLocalStorage);
+
+        const { userId, username } = jwtDecode(tokenFromLocalStorage);
         setUserId(userId);
+        setUsername(username);
       } else {
         setIsLoading(false);
         window.localStorage.removeItem("authToken");
@@ -63,6 +68,7 @@ const AuthContextProvider = ({ children }) => {
     window.localStorage.removeItem("authToken");
     setIsAuthenticated(false);
     setUserId();
+    setUsername();
   };
 
   useEffect(() => {
@@ -83,6 +89,7 @@ const AuthContextProvider = ({ children }) => {
         fetchWithToken,
         logout,
         userId,
+        username,
       }}
     >
       {children}
