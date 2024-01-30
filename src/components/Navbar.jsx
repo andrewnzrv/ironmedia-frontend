@@ -10,7 +10,6 @@ const Navbar = () => {
       </div>
       <div className="login">
         <Link to="/login">Log In</Link>
-        <Link to="/signup">Sign Up</Link>
       </div>
     </div>
   );

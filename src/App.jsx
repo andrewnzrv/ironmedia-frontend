@@ -7,6 +7,7 @@ import About from "./pages/About";
 import Navbar from "./components/Navbar";
 import ContentDetail from "./pages/ContentDetail";
 import ArtworkUpdatePage from "./pages/UpdateContent";
+import PrivateRoute from "./components/PrivateRouting";
 
 function App() {
   return (
@@ -16,11 +17,22 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/add" element={<AddContent />} />
+        <Route
+          path="/add"
+          element={
+            <PrivateRoute>
+              <AddContent />
+            </PrivateRoute>
+          }
+        />
         <Route path="/artworks/:artworkId" element={<ContentDetail />} />
         <Route
           path="/artworks/:artworkId/update"
-          element={<ArtworkUpdatePage />}
+          element={
+            <PrivateRoute>
+              <ArtworkUpdatePage />
+            </PrivateRoute>
+          }
         />
         <Route path="*" element={<p>404</p>} />
       </Routes>
