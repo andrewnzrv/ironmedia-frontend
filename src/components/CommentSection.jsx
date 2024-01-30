@@ -7,7 +7,7 @@ const CommentSection = () => {
   const { artworkId } = useParams();
   const [artwork, setArtwork] = useState();
   const [comments, setComments] = useState([]);
-  const [content, setContent] = useState();
+  const [content, setContent] = useState("");
   const blogPost = artworkId;
   const { fetchWithToken } = useContext(AuthContext);
 
@@ -77,7 +77,7 @@ const CommentSection = () => {
           >
             <label htmlFor="comment">Comment:</label>{" "}
             {/* Added content input */}
-            <textarea
+            <input
               id="comment"
               value={content}
               onChange={(event) => setContent(event.target.value)}
