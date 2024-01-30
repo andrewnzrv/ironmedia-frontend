@@ -3,6 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Button from "@mui/material/Button";
 import CommentSection from "../components/CommentSection";
+import { Container } from "@mui/material";
+import Navbar from "../components/Navbar";
 
 const ArtworkDetailPage = () => {
   const { artworkId } = useParams();
@@ -45,22 +47,23 @@ const ArtworkDetailPage = () => {
     <>
       {artwork ? (
         <>
-          <h1>{artwork.title}</h1>
-          <img className="img" src={artwork.imageFile} />
-          <p>{artwork.content}</p>
-          <p>{artwork.author.username}</p>
-          <button type="button" onClick={handleDelete}>
-            Delete
-          </button>
+          <Container maxWidth="xl" className="container">
+            <Navbar />
+            <h1>{artwork.title}</h1>
+            <img className="img" src={artwork.imageFile} />
+            <p>{artwork.content}</p>
+            <button type="button" onClick={handleDelete}>
+              Delete
+            </button>
 
-          <Link to={`/artworks/${artwork._id}/update`}>
-            <button type="button">Update</button>
-          </Link>
-
-          <div>
+            <Link to={`/artworks/${artwork._id}/update`}>
+              <button type="button">Update</button>
+            </Link>
+            <div>
             <h2>Comments</h2>
             <CommentSection artwork={artwork} />
           </div>
+          </Container>
         </>
       ) : (
         <p>Loading...</p>

@@ -3,6 +3,8 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import { Container } from "@mui/material";
+import Navbar from "../components/Navbar";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
@@ -45,43 +47,46 @@ const AddContent = () => {
 
   return (
     <>
-      <h1>New Artwork</h1>
-      <form
-        onSubmit={handleSubmit}
-        action="submit"
-        style={{ display: "flex", flexDirection: "column" }}
-      >
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
-          value={title}
-          onChange={(event) => setTitle(event.target.value)}
-        />
-        <label htmlFor="image">Image</label>
-        <input
-          type="file"
-          label="Image"
-          name="myFile"
-          id="file-upload"
-          accept=".jpeg, .png, .jpg"
-          onChange={(event) => handleFileUpload(event)}
-        />
-        <label htmlFor="content">Content:</label> {/* Added content input */}
-        <textarea
-          id="content"
-          value={content}
-          onChange={(event) => setContent(event.target.value)}
-        />
-        <label htmlFor="author">Author:</label>
-        <input
-          type="text"
-          id="author"
-          value={author}
-          onChange={(event) => setAuthor(event.target.value)}
-        />
-        <button type="submit">SUBMIT</button>
-      </form>
+      <Container maxWidth="xl" className="container">
+        <Navbar />
+        <h1>New Artwork</h1>
+        <form
+          onSubmit={handleSubmit}
+          action="submit"
+          style={{ display: "flex", flexDirection: "column" }}
+        >
+          <label htmlFor="title">Title:</label>
+          <input
+            type="text"
+            id="title"
+            value={title}
+            onChange={(event) => setTitle(event.target.value)}
+          />
+          <label htmlFor="image">Image</label>
+          <input
+            type="file"
+            label="Image"
+            name="myFile"
+            id="file-upload"
+            accept=".jpeg, .png, .jpg"
+            onChange={(event) => handleFileUpload(event)}
+          />
+          <label htmlFor="content">Content:</label> {/* Added content input */}
+          <textarea
+            id="content"
+            value={content}
+            onChange={(event) => setContent(event.target.value)}
+          />
+          <label htmlFor="author">Author:</label>
+          <input
+            type="text"
+            id="author"
+            value={author}
+            onChange={(event) => setAuthor(event.target.value)}
+          />
+          <button type="submit">SUBMIT</button>
+        </form>
+      </Container>
     </>
   );
 };
