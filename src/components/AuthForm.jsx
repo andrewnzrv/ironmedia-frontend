@@ -1,6 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
+import TextField from "@mui/material/TextField";
 
 const AuthForm = ({ isLogin = false }) => {
   const [email, setEmail] = useState("");
@@ -50,30 +51,35 @@ const AuthForm = ({ isLogin = false }) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Email
-        <input type="email" required value={email} onChange={handleEmail} />
-      </label>
       {!isLogin && (
-        <label>
-          Username
-          <input
-            type="text"
-            required
-            value={username}
-            onChange={handleUsername}
-          />
-        </label>
-      )}
-      <label>
-        Password
-        <input
-          type="password"
+        <TextField
+          id="outlined-username-input"
+          label="Username"
+          type="text"
           required
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
+          value={username}
+          onChange={(event) => handleUsername(event)}
         />
-      </label>
+      )}
+      <TextField
+        id="outlined-email-input"
+        label="Email"
+        type="email"
+        autoComplete="email"
+        required
+        value={email}
+        onChange={(event) => handleEmail(event)}
+      />
+
+      <TextField
+        id="outlined-password-input"
+        label="Password"
+        type="password"
+        autoComplete="current-password"
+        required
+        value={password}
+        onChange={(event) => setPassword(event.target.value)}
+      />
       <button type="submit">{isLogin ? "Login" : "Signup"}</button>
     </form>
   );
