@@ -90,6 +90,7 @@ const AuthContextProvider = ({ children }) => {
         logout,
         userId,
         username,
+        logout,
       }}
     >
       {children}
