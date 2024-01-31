@@ -51,6 +51,7 @@ const ArtworkDetailPage = () => {
             <Navbar />
             <h1>{artwork.title}</h1>
             <img className="img" src={artwork.imageFile} />
+            <video src={artwork.imageFile}></video>
             <p>{artwork.content}</p>
             <Button
               variant="outlined"

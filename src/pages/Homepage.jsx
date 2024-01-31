@@ -4,9 +4,12 @@ import { Grid } from "@mui/material";
 import { Container } from "@mui/material";
 import ArtCard from "../components/ArtCard";
 import Navbar from "../components/Navbar";
+import { useContext } from "react";
+import { AuthContext } from "../contexts/AuthContext";
 
 function Homepage() {
   const [art, setArt] = useState([]);
+  const { isAuthenticated, username, logout, userId } = useContext(AuthContext);
 
   const fetchArt = async () => {
     try {
@@ -14,7 +17,7 @@ function Homepage() {
       console.log(response);
       if (response.ok) {
         const artData = await response.json();
-        console.log(artData);
+        //console.log(artData);
         setArt(artData);
       }
     } catch (error) {

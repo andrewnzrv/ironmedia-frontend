@@ -11,13 +11,13 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 const ArtCard = ({ art }) => {
-  const { isAuthenticated, username, logout } = useContext(AuthContext);
-  console.log(art);
+  const { isAuthenticated, username, logout, userId } = useContext(AuthContext);
+
   return (
     <div>
       <Card
         sx={{
-          borderRadius: "8px",
+          borderRadius: "20px",
           backgroundColor: "white",
           //border: "1px solid #3399ff",
         }}
