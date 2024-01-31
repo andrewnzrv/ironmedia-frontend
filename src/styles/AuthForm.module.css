@@ -1,0 +1,24 @@
+body {
+  background-color: #f2f1ef;
+}
+
+.authForm {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  gap: 20px;
+}
+
+.authFormSection {
+  display: flex;
+  gap: 20px;
+  padding-top: 20px;
+  width: 400px;
+}
+
+.authFormButton {
+  width: 400px;
+  height: 50px;
+}

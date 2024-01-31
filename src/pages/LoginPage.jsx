@@ -9,8 +9,6 @@ const LoginPage = () => {
     <Container maxWidth="xl" className="container">
       <Navbar />
       <AuthForm isLogin />
-
-      <Link to="/signup">Create an Account</Link>
     </Container>
   );
 };
