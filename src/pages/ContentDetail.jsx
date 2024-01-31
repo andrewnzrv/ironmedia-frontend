@@ -5,6 +5,7 @@ import Button from "@mui/material/Button";
 import CommentSection from "../components/CommentSection";
 import { Container } from "@mui/material";
 import Navbar from "../components/Navbar";
+import styles from "../styles/ContentDetail.module.css";
 
 const ArtworkDetailPage = () => {
   const { artworkId } = useParams();
@@ -49,9 +50,8 @@ const ArtworkDetailPage = () => {
         <>
           <Container maxWidth="xl" className="container">
             <Navbar />
-            <h1>{artwork.title}</h1>
             <img className="img" src={artwork.imageFile} />
-            <video src={artwork.imageFile}></video>
+            <h1>{artwork.title}</h1>
             <p>{artwork.content}</p>
             {artwork.author._id === userId ? (
               <>
@@ -71,12 +71,11 @@ const ArtworkDetailPage = () => {
                 </Link>
               </>
             ) : null}
-
-            <div>
-              <h2>Comments</h2>
-              <CommentSection artwork={artwork} />
-            </div>
           </Container>
+          <div>
+            <h2>Comments</h2>
+            <CommentSection artwork={artwork} />
+          </div>
         </>
       ) : (
         <p>Loading...</p>
