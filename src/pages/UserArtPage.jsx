@@ -35,7 +35,7 @@ function UserArtPage() {
   return (
     <Container maxWidth="xl" className="container">
       <div className="cnt">
-        <h1 className="main-title">{`${username}'s Art`}</h1>
+        <h1 className="main-title">{`${username}'s Art Collection`}</h1>
         <div>
           <Grid container spacing={3}>
             {userArt.map((art) => (
