@@ -2,8 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SingleComment from "./SingleComment";
 import { AuthContext } from "../contexts/AuthContext";
+import { Box, TextField } from "@mui/material";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
 import styles from "../styles/CommentSection.module.css";
-import { Box } from "@mui/material";
 
 const CommentSection = () => {
   const { artworkId } = useParams();
@@ -77,12 +79,16 @@ const CommentSection = () => {
             action="submit"
             style={{ display: "flex", flexDirection: "column", width: "500px" }}
           >
-            <input
-              id="comment"
-              value={content}
-              onChange={(event) => setContent(event.target.value)}
-            />
-            <button type="submit">SUBMIT</button>
+            <Box className={styles.newComment}>
+              <TextField
+                id="standard-basic"
+                label="Add a comment..."
+                variant="standard"
+                value={content}
+                onChange={(event) => setContent(event.target.value)}
+              />
+              <Button type="submit" startIcon={<SendIcon />} />
+            </Box>
           </form>
 
           {comments.map((comment) => (
