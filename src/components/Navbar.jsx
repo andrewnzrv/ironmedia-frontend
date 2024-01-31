@@ -2,19 +2,24 @@ import { Link } from "react-router-dom";
 import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Button from "@mui/material/Button";
+import styles from "../styles/Nav.module.css";
 
 const Navbar = () => {
   const { isAuthenticated, username, logout, userId } = useContext(AuthContext);
-  console.log("isAuthenticated:", isAuthenticated);
-  console.log("username this is:", username);
-  console.log("user id this is:", userId);
+
 
   return (
     <div className="navbar">
       <div className="main-nav">
-        <Link to="/">Homepage</Link>
-        <Link to="/add">Add New Artwork</Link>
-        <Link to="/about">About us</Link>
+        <Link className={styles.navLink} to="/">
+          Homepage
+        </Link>
+        <Link className={styles.navLink} to="/add">
+          Add New Artwork
+        </Link>
+        <Link className={styles.navLink} to="/about">
+          About us
+        </Link>
       </div>
       <div className="login">
         {isAuthenticated ? (

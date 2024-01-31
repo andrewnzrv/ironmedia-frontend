@@ -1,0 +1,14 @@
+.navLink::after {
+  content: "";
+  height: 4px;
+  width: 100%;
+  background: #0badee;
+  position: absolute;
+  left: 0;
+  bottom: -8px;
+  opacity: 0;
+}
+
+.navLink:hover::after {
+  opacity: 1;
+}

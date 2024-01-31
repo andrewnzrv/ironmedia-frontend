@@ -41,7 +41,7 @@ const AddContent = () => {
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
     const base64 = await convertToBase64(file);
-    console.log(base64);
+    //console.log(base64);
     setPostImage(base64);
   };
 
@@ -68,7 +68,7 @@ const AddContent = () => {
             label="Image"
             name="myFile"
             id="file-upload"
-            accept=".jpeg, .png, .jpg"
+            accept=".jpeg, .png, .jpg, .mp4"
             onChange={(event) => handleFileUpload(event)}
           />
           <label htmlFor="content">Content:</label> {/* Added content input */}

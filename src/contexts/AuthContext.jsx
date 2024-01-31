@@ -8,13 +8,14 @@ const AuthContextProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [userId, setUserId] = useState();
+  console.log("show user id", userId);
   const [username, setUsername] = useState();
+  //console.log("this is the user id", userId);
 
   const saveToken = (tokenFromLogin) => {
     setToken(tokenFromLogin);
     setIsAuthenticated(true);
     window.localStorage.setItem("authToken", tokenFromLogin);
-
     const { _id, username } = jwtDecode(tokenFromLogin);
     setUserId(_id);
     setUsername(username);
