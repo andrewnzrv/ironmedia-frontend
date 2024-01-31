@@ -4,9 +4,10 @@ import { AuthContext } from "../contexts/AuthContext";
 import Button from "@mui/material/Button";
 
 const Navbar = () => {
-  const { isAuthenticated, username, logout } = useContext(AuthContext);
+  const { isAuthenticated, username, logout, userId } = useContext(AuthContext);
   console.log("isAuthenticated:", isAuthenticated);
   console.log("username this is:", username);
+  console.log("user id this is:", userId);
 
   return (
     <div className="navbar">
