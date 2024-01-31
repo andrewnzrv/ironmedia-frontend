@@ -1,14 +1,20 @@
+.navLink {
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+}
+
 .navLink::after {
   content: "";
-  height: 4px;
-  width: 100%;
-  background: #0badee;
+  height: 2px;
+  width: 0;
+  background: #000000;
   position: absolute;
   left: 0;
-  bottom: -8px;
-  opacity: 0;
+  bottom: -2px;
+  transition: width 0.3s ease;
 }
 
 .navLink:hover::after {
-  opacity: 1;
+  width: 100%;
 }
