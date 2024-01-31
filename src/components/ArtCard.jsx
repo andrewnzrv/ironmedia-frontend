@@ -12,7 +12,7 @@ import { AuthContext } from "../contexts/AuthContext";
 
 const ArtCard = ({ art }) => {
   const { isAuthenticated, username, logout } = useContext(AuthContext);
-  console.log(art);
+  /*  console.log(art); */
   return (
     <div>
       <Card

@@ -19,7 +19,9 @@ const Navbar = () => {
       <div className="login">
         {isAuthenticated ? (
           <div>
-            <span className="welcome-text">Welcome, {username}!</span>
+            <Link to={`/${userId}/art`}>
+              <span className="welcome-text">Welcome, {username}!</span>
+            </Link>
             <Button
               type="button"
               variant="outlined"
