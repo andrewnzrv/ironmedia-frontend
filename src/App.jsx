@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import ContentDetail from "./pages/ContentDetail";
 import ArtworkUpdatePage from "./pages/UpdateContent";
 import PrivateRoute from "./components/PrivateRouting";
+import UserArtPage from "./pages/UserArtPage";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             </PrivateRoute>
           }
         />
+        <Route path="/:userId/art" element={<UserArtPage />} />
         <Route path="/artworks/:artworkId" element={<ContentDetail />} />
         <Route
           path="/artworks/:artworkId/update"

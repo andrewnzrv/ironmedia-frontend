@@ -11,7 +11,9 @@ import { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 
 const ArtCard = ({ art }) => {
-  const { isAuthenticated, username, logout, userId } = useContext(AuthContext);
+
+  const { isAuthenticated, username, logout } = useContext(AuthContext);
+  /*  console.log(art); */
 
   return (
     <div>

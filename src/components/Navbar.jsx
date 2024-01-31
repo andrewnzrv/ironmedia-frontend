@@ -7,6 +7,7 @@ import styles from "../styles/Nav.module.css";
 const Navbar = () => {
   const { isAuthenticated, username, logout, userId } = useContext(AuthContext);
 
+
   return (
     <div className="navbar">
       <div className="main-nav">
@@ -23,7 +24,9 @@ const Navbar = () => {
       <div className="login">
         {isAuthenticated ? (
           <div>
-            <span className="welcome-text">Welcome, {username}!</span>
+            <Link to={`/${userId}/art`}>
+              <span className="welcome-text">Welcome, {username}!</span>
+            </Link>
             <Button
               type="button"
               variant="outlined"
