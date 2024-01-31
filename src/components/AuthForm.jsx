@@ -2,8 +2,11 @@ import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../contexts/AuthContext";
 import TextField from "@mui/material/TextField";
+import styles from "../styles/AuthForm.module.css";
+import { Button } from "@mui/material";
+import { Link } from "react-router-dom";
 
-const AuthForm = ({ isLogin = false }) => {
+const AuthForm = ({ isLogin = false, isSignup = false }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
@@ -50,9 +53,12 @@ const AuthForm = ({ isLogin = false }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className={styles.authForm} onSubmit={handleSubmit}>
+      <h1>{isLogin ? "Hei!" : "Create an Account"}</h1>
+
       {!isLogin && (
         <TextField
+          className={styles.authFormSection}
           id="outlined-username-input"
           label="Username"
           type="text"
@@ -62,6 +68,7 @@ const AuthForm = ({ isLogin = false }) => {
         />
       )}
       <TextField
+        className={styles.authFormSection}
         id="outlined-email-input"
         label="Email"
         type="email"
@@ -72,6 +79,7 @@ const AuthForm = ({ isLogin = false }) => {
       />
 
       <TextField
+        className={styles.authFormSection}
         id="outlined-password-input"
         label="Password"
         type="password"
@@ -80,7 +88,24 @@ const AuthForm = ({ isLogin = false }) => {
         value={password}
         onChange={(event) => setPassword(event.target.value)}
       />
-      <button type="submit">{isLogin ? "Login" : "Signup"}</button>
+
+      <Button
+        variant="contained"
+        className={styles.authFormButton}
+        type="submit"
+      >
+        {isLogin ? "Login" : "Signup"}
+      </Button>
+
+      {isLogin ? (
+        <p>
+          <Link to="/signup">Create an account</Link>
+        </p>
+      ) : (
+        <p>
+          Already have an account? <Link to="/login">Login</Link>
+        </p>
+      )}
     </form>
   );
 };
