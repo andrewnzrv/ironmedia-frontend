@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SingleComment from "./SingleComment";
 import { AuthContext } from "../contexts/AuthContext";
+import styles from "../styles/CommentSection.module.css";
+import { Box } from "@mui/material";
 
 const CommentSection = () => {
   const { artworkId } = useParams();
@@ -69,14 +71,12 @@ const CommentSection = () => {
   return (
     <>
       {artwork ? (
-        <>
+        <Box>
           <form
             onSubmit={handleSubmit}
             action="submit"
             style={{ display: "flex", flexDirection: "column", width: "500px" }}
           >
-            <label htmlFor="comment">Comment:</label>{" "}
-            {/* Added content input */}
             <input
               id="comment"
               value={content}
@@ -92,7 +92,7 @@ const CommentSection = () => {
               handleDelete={handleDelete}
             />
           ))}
-        </>
+        </Box>
       ) : (
         <p>Loading...</p>
       )}

@@ -1,0 +1,22 @@
+.pageContent {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 50px;
+}
+
+.artwork {
+  max-width: 800px;
+}
+
+.img {
+  width: 100%;
+}
+
+.artworkButtons {
+  display: flex;
+  gap: 20px;
+}
+
+h1 {
+  font-size: 1.2rem;
+}
