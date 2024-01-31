@@ -4,6 +4,7 @@ import { Grid, Container } from "@mui/material";
 import ArtCard from "../components/ArtCard";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../contexts/AuthContext";
+import ProfileCard from "../components/ProfileCard";
 
 function UserArtPage() {
   const [userArt, setUserArt] = useState([]);
@@ -34,14 +35,13 @@ function UserArtPage() {
   return (
     <Container maxWidth="xl" className="container">
       <div className="cnt">
-        <Navbar />
         <h1 className="main-title">{`${username}'s Art`}</h1>
         <div>
           <Grid container spacing={3}>
             {userArt.map((art) => (
               <Grid item key={art._id} xs={12} md={6} lg={4}>
                 <Link to={`/artworks/${art._id}`}>
-                  <ArtCard art={art} />
+                  <ProfileCard art={art} />
                 </Link>
               </Grid>
             ))}

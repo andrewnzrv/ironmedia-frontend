@@ -49,7 +49,6 @@ const ArtworkDetailPage = () => {
       {artwork ? (
         <>
           <Container maxWidth="xl" className="container">
-            <Navbar />
             <img className="img" src={artwork.imageFile} />
             <h1>{artwork.title}</h1>
             <p>{artwork.content}</p>

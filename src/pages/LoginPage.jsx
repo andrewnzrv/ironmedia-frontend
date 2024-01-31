@@ -7,7 +7,6 @@ import { Link } from "react-router-dom";
 const LoginPage = () => {
   return (
     <Container maxWidth="xl" className="container">
-      <Navbar />
       <AuthForm isLogin />
     </Container>
   );

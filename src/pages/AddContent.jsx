@@ -48,7 +48,6 @@ const AddContent = () => {
   return (
     <>
       <Container maxWidth="xl" className="container">
-        <Navbar />
         <h1>New Artwork</h1>
         <form
           onSubmit={handleSubmit}

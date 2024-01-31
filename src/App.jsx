@@ -9,10 +9,14 @@ import ContentDetail from "./pages/ContentDetail";
 import ArtworkUpdatePage from "./pages/UpdateContent";
 import PrivateRoute from "./components/PrivateRouting";
 import UserArtPage from "./pages/UserArtPage";
+import { Container } from "@mui/material";
 
 function App() {
   return (
     <>
+      <Container maxWidth="xl" className="container">
+        <Navbar />
+      </Container>
       <Routes>
         <Route path="/" element={<Homepage />} />
         <Route path="/about" element={<About />} />

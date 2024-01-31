@@ -5,7 +5,6 @@ import Navbar from "../components/Navbar";
 const SignUpPage = () => {
   return (
     <Container maxWidth="xl" className="container">
-      <Navbar />
       <AuthForm />
     </Container>
   );
