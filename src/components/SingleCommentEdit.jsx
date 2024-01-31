@@ -1,5 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
+import { TextField } from "@mui/material";
 
 const SingleCommentEdit = ({
   setIsEditing,
@@ -28,12 +29,14 @@ const SingleCommentEdit = ({
   return (
     <>
       <form className="form" onSubmit={handleSubmit}>
-        <input
+        <TextField
+          id="standard-basic"
+          variant="standard"
           name="editComment"
           type="text"
           value={commentContent}
           onChange={handleInput}
-        ></input>
+        />
         <button className="input-btn" type="submit">
           Save
         </button>
