@@ -45,9 +45,7 @@ const AddContent = () => {
 
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
-      <Typography variant="h3" gutterBottom>
-        New Artwork
-      </Typography>
+      <h1 className="main-title">New Artwork</h1>
       <Box
         component="form"
         onSubmit={handleSubmit}
@@ -76,7 +74,7 @@ const AddContent = () => {
           <img
             src={imagePreview}
             alt="Uploaded Preview"
-            style={{ maxWidth: "100%", marginTop: "8px" }}
+            style={{ maxWidth: "100%", marginTop: "8px", borderRadius: "5px" }}
           />
         )}
         <TextField
@@ -87,7 +85,12 @@ const AddContent = () => {
           value={content}
           onChange={(event) => setContent(event.target.value)}
         />
-        <Button type="submit" variant="contained" color="primary">
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ width: "135px", height: "40px" }}
+        >
           Submit
         </Button>
       </Box>

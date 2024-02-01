@@ -6,8 +6,9 @@ const About = () => {
   return (
     <>
       <Container maxWidth="xl" className="container">
-        <h1 className={styles.header}>
-          Hei There! Welcome to the <br /> MERN Stack Open Art Gallery project.
+        <h1 className="main-title">
+          Hei There! Welcome to the
+          <br /> MERN Stack Open Art Gallery project.
         </h1>
 
         <p className={styles.paragraph}>
@@ -17,7 +18,7 @@ const About = () => {
           enables users to upload and share their artworks seamlessly, evoking
           the familiar experience of a social media application.
         </p>
-
+        <br />
         <p className={styles.headerAuthor}>The project is developed by:</p>
         <div className={styles.githubList}>
           <div>

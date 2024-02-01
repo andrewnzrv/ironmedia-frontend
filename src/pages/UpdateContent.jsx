@@ -74,9 +74,7 @@ const ArtworkUpdatePage = () => {
 
   return (
     <Container maxWidth="md" sx={{ mt: 4 }}>
-      <Typography variant="h3" gutterBottom>
-        Update Artwork
-      </Typography>
+      <h1 className="main-title">Update Artwork</h1>
       <form
         onSubmit={handleSubmit}
         style={{ display: "flex", flexDirection: "column" }}
@@ -88,17 +86,6 @@ const ArtworkUpdatePage = () => {
           onChange={(event) => setTitle(event.target.value)}
           sx={{ mb: 2 }}
         />
-
-        <TextField
-          label="Content"
-          multiline
-          rows={4}
-          variant="outlined"
-          value={content}
-          onChange={(event) => setContent(event.target.value)}
-          sx={{ mb: 2 }}
-        />
-
         <label htmlFor="file-upload">
           <input
             type="file"
@@ -122,12 +109,27 @@ const ArtworkUpdatePage = () => {
         {imagePreview && (
           <img
             src={imagePreview}
-            alt="Uploaded Preview"
+            alt=""
             style={{ maxWidth: "100%", marginTop: "8px" }}
           />
         )}
 
-        <Button type="submit" variant="contained" color="primary">
+        <TextField
+          label="Content"
+          multiline
+          rows={4}
+          variant="outlined"
+          value={content}
+          onChange={(event) => setContent(event.target.value)}
+          sx={{ mb: 2 }}
+        />
+
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ width: "135px", height: "40px" }}
+        >
           Update
         </Button>
       </form>
