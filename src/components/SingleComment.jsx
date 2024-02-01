@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import SingleCommentEdit from "./SingleCommentEdit";
 import { AuthContext } from "../contexts/AuthContext";
+import { Box } from "@mui/material";
+import styles from "../styles/SingleComment.module.css";
 
 const SingleComment = ({ comment, handleDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -21,21 +23,23 @@ const SingleComment = ({ comment, handleDelete }) => {
           commentId={comment._id}
         />
       ) : (
-        <div>
-          <p>
-            {comment.user.username}: {commentContent}
-          </p>
+        <Box className={styles.comment}>
+          <Box>
+            <p>
+              {comment.user.username}: {commentContent}
+            </p>
+          </Box>
           {comment.user._id === userId ? (
-            <div>
+            <Box>
               <button type="button" onClick={() => handleDelete(comment._id)}>
                 Delete
               </button>
               <button type="button" onClick={() => handleEdit(comment._id)}>
                 Edit
               </button>
-            </div>
+            </Box>
           ) : null}
-        </div>
+        </Box>
       )}
     </>
   );

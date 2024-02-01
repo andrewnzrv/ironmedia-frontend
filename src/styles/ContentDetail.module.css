@@ -20,3 +20,8 @@
 h1 {
   font-size: 1.2rem;
 }
+
+.comments {
+  max-width: 500px;
+  word-break: break-all;
+}

@@ -74,7 +74,7 @@ const ArtworkDetailPage = () => {
                   </Box>
                 ) : null}
               </Box>
-              <Box>
+              <Box className={styles.comments}>
                 <CommentSection artwork={artwork} />
               </Box>
             </Box>
