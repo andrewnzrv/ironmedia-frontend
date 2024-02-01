@@ -62,3 +62,21 @@ img {
 a {
   text-decoration: none;
 }
+
+@media only screen and (max-width: 600px) and (max-width: 900px) {
+  .navbar {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .login {
+    margin-top: 0px;
+    margin-left: auto;
+    order: -1;
+    padding-bottom: 20px;
+  }
+
+  .main-nav a {
+    margin-right: 60px;
+  }
+}
