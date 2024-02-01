@@ -38,23 +38,21 @@ function UserArtPage() {
       <div className="cnt">
         <h1 className="main-title">{`${username}'s Art Collection`}</h1>
         <div>
-          <Grid container spacing={3}>
-            <Masonry columns={4} spacing={1}>
-              {userArt.map((art) => (
-                <Grid
-                  key={art._id}
-                  xs={12}
-                  md={4}
-                  lg={3}
-                  style={{ marginTop: 40 }}
-                >
-                  <Link to={`/artworks/${art._id}`}>
-                    <ProfileCard art={art} />
-                  </Link>
-                </Grid>
-              ))}
-            </Masonry>
-          </Grid>
+          <Masonry columns={4} spacing={1}>
+            {userArt.map((art) => (
+              <Grid
+                key={art._id}
+                xs={12}
+                md={6}
+                lg={4}
+                style={{ marginTop: 40 }}
+              >
+                <Link to={`/artworks/${art._id}`}>
+                  <ProfileCard art={art} />
+                </Link>
+              </Grid>
+            ))}
+          </Masonry>
         </div>
       </div>
     </Container>
