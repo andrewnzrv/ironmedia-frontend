@@ -43,7 +43,10 @@ const SingleComment = ({
           }}
         >
           <Box>
-            <p className={styles.username}>{comment.user.username}</p>
+            <Box className={styles.commentInfo}>
+              <p className={styles.username}>{comment.user.username}</p>
+              <p className={styles.createdAt}>February 1, 2020 at 16:49</p>
+            </Box>
             <p className={styles.commentContent}>{commentContent}</p>
           </Box>
           {comment.user._id === userId && showButtons && !isEditingGlobal ? (
