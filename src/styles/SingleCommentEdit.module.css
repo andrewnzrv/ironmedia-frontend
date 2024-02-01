@@ -1,0 +1,10 @@
+.editComment {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  gap: 10px;
+}
+
+.saveBtn {
+  width: 28px;
+  margin: 16px 0;
+}

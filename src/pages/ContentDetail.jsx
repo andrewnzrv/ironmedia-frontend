@@ -3,8 +3,8 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Button from "@mui/material/Button";
 import CommentSection from "../components/CommentSection";
-import { Container } from "@mui/material";
-import Navbar from "../components/Navbar";
+import { Box, Container } from "@mui/material";
+import styles from "../styles/ContentDetail.module.css";
 
 const ArtworkDetailPage = () => {
   const { artworkId } = useParams();
@@ -48,33 +48,36 @@ const ArtworkDetailPage = () => {
       {artwork ? (
         <>
           <Container maxWidth="xl" className="container">
-            <h1>{artwork.title}</h1>
-            <img className="img" src={artwork.imageFile} />
-            <video src={artwork.imageFile}></video>
-            <p>{artwork.content}</p>
-            {artwork.author._id === userId ? (
-              <>
-                <Button
-                  variant="outlined"
-                  color="error"
-                  type="button"
-                  onClick={handleDelete}
-                >
-                  Delete
-                </Button>
+            <Box className={styles.pageContent}>
+              <Box className={styles.artwork}>
+                <img className={styles.img} src={artwork.imageFile} />
+                <Box className={styles.artworkInfo}>
+                  <h1>{artwork.title}</h1>
+                  <p>{artwork.content}</p>
+                </Box>
+                {artwork.author._id === userId ? (
+                  <Box className={styles.artworkButtons}>
+                    <Button
+                      variant="outlined"
+                      color="error"
+                      type="button"
+                      onClick={handleDelete}
+                    >
+                      Delete
+                    </Button>
 
-                <Link to={`/artworks/${artwork._id}/update`}>
-                  <Button variant="contained" type="button">
-                    Update
-                  </Button>
-                </Link>
-              </>
-            ) : null}
-
-            <div>
-              <h2>Comments</h2>
-              <CommentSection artwork={artwork} />
-            </div>
+                    <Link to={`/artworks/${artwork._id}/update`}>
+                      <Button variant="contained" type="button">
+                        Update
+                      </Button>
+                    </Link>
+                  </Box>
+                ) : null}
+              </Box>
+              <Box className={styles.comments}>
+                <CommentSection artwork={artwork} />
+              </Box>
+            </Box>
           </Container>
         </>
       ) : (

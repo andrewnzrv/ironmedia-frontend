@@ -2,12 +2,17 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SingleComment from "./SingleComment";
 import { AuthContext } from "../contexts/AuthContext";
+import { Box, Input } from "@mui/material";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
+import styles from "../styles/CommentSection.module.css";
 
 const CommentSection = () => {
   const { artworkId } = useParams();
   const [artwork, setArtwork] = useState();
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState("");
+  const [isEditingGlobal, setIsEditingGlobal] = useState(false);
   const blogPost = artworkId;
   const { fetchWithToken } = useContext(AuthContext);
 
@@ -69,20 +74,20 @@ const CommentSection = () => {
   return (
     <>
       {artwork ? (
-        <>
+        <Box>
           <form
             onSubmit={handleSubmit}
             action="submit"
             style={{ display: "flex", flexDirection: "column", width: "500px" }}
           >
-            <label htmlFor="comment">Comment:</label>{" "}
-            {/* Added content input */}
-            <input
-              id="comment"
-              value={content}
-              onChange={(event) => setContent(event.target.value)}
-            />
-            <button type="submit">SUBMIT</button>
+            <Box className={styles.newComment}>
+              <Input
+                placeholder="Add a comment..."
+                value={content}
+                onChange={(event) => setContent(event.target.value)}
+              />
+              <Button type="submit" startIcon={<SendIcon />} />
+            </Box>
           </form>
 
           {comments.map((comment) => (
@@ -90,9 +95,11 @@ const CommentSection = () => {
               key={comment._id}
               comment={comment}
               handleDelete={handleDelete}
+              isEditingGlobal={isEditingGlobal}
+              setIsEditingGlobal={setIsEditingGlobal}
             />
           ))}
-        </>
+        </Box>
       ) : (
         <p>Loading...</p>
       )}

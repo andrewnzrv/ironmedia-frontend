@@ -1,0 +1,18 @@
+.comment {
+  display: grid;
+  grid-template-columns: 5fr 1fr;
+  gap: 10px;
+}
+
+.username {
+  font-weight: 600;
+  margin: 16px 0 0 0;
+}
+
+.commentContent {
+  margin: 0 0 16px 0;
+}
+
+.buttons {
+  margin: 15px 0;
+}
