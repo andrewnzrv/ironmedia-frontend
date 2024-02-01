@@ -14,7 +14,7 @@ const Navbar = () => {
           Homepage
         </Link>
         <Link className={styles.navLink} to="/add">
-          Add New Artwork
+          Add artwork
         </Link>
         <Link className={styles.navLink} to="/about">
           About

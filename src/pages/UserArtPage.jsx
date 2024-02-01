@@ -39,7 +39,7 @@ function UserArtPage() {
         <div>
           <Grid container spacing={3}>
             {userArt.map((art) => (
-              <Grid item key={art._id} xs={12} md={6} lg={4}>
+              <Grid item key={art._id} xs={12} md={4} lg={3}>
                 <Link to={`/artworks/${art._id}`}>
                   <ProfileCard art={art} />
                 </Link>

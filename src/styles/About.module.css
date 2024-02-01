@@ -16,13 +16,13 @@
   color: black;
 }
 
-a {
+.githubList a {
   position: relative;
   text-decoration: none;
   color: inherit;
 }
 
-a::after {
+.githubList a::after {
   content: "";
   height: 2px;
   width: 0;
@@ -33,6 +33,6 @@ a::after {
   transition: width 0.3s ease;
 }
 
-a:hover::after {
+.githubList a:hover::after {
   width: 100%;
 }
