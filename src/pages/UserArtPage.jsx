@@ -5,6 +5,7 @@ import ArtCard from "../components/ArtCard";
 import Navbar from "../components/Navbar";
 import { AuthContext } from "../contexts/AuthContext";
 import ProfileCard from "../components/ProfileCard";
+import Masonry from "@mui/lab/Masonry";
 
 function UserArtPage() {
   const [userArt, setUserArt] = useState([]);
@@ -38,13 +39,21 @@ function UserArtPage() {
         <h1 className="main-title">{`${username}'s Art Collection`}</h1>
         <div>
           <Grid container spacing={3}>
-            {userArt.map((art) => (
-              <Grid item key={art._id} xs={12} md={4} lg={3}>
-                <Link to={`/artworks/${art._id}`}>
-                  <ProfileCard art={art} />
-                </Link>
-              </Grid>
-            ))}
+            <Masonry columns={4} spacing={1}>
+              {userArt.map((art) => (
+                <Grid
+                  key={art._id}
+                  xs={12}
+                  md={4}
+                  lg={3}
+                  style={{ marginTop: 40 }}
+                >
+                  <Link to={`/artworks/${art._id}`}>
+                    <ProfileCard art={art} />
+                  </Link>
+                </Grid>
+              ))}
+            </Masonry>
           </Grid>
         </div>
       </div>
