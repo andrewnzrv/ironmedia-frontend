@@ -6,6 +6,7 @@ import styles from "../styles/SingleCommentEdit.module.css";
 
 const SingleCommentEdit = ({
   setIsEditing,
+  setIsEditingGlobal,
   commentContent,
   setCommentContent,
   commentId,
@@ -22,6 +23,7 @@ const SingleCommentEdit = ({
       if (response.status === 200) {
         setCommentContent(commentContent);
         setIsEditing(false);
+        setIsEditingGlobal(false);
       }
     } catch (error) {
       console.log(error);

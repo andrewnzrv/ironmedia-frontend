@@ -12,6 +12,7 @@ const CommentSection = () => {
   const [artwork, setArtwork] = useState();
   const [comments, setComments] = useState([]);
   const [content, setContent] = useState("");
+  const [isEditingGlobal, setIsEditingGlobal] = useState(false);
   const blogPost = artworkId;
   const { fetchWithToken } = useContext(AuthContext);
 
@@ -94,6 +95,8 @@ const CommentSection = () => {
               key={comment._id}
               comment={comment}
               handleDelete={handleDelete}
+              isEditingGlobal={isEditingGlobal}
+              setIsEditingGlobal={setIsEditingGlobal}
             />
           ))}
         </Box>
