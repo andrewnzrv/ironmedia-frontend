@@ -2,6 +2,9 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import { Container } from "@mui/material";
+import Typography from "@mui/material/Typography";
 
 const ArtworkUpdatePage = () => {
   const { artworkId } = useParams();
@@ -9,6 +12,7 @@ const ArtworkUpdatePage = () => {
   const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
   const [imageFile, setPostImage] = useState("");
+  const [imagePreview, setImagePreview] = useState(null); // Added state for image preview
 
   const { fetchWithToken } = useContext(AuthContext);
   const navigate = useNavigate();
@@ -18,13 +22,20 @@ const ArtworkUpdatePage = () => {
       try {
         const response = await fetch(
           `${import.meta.env.VITE_API_URL}/api/blog/${artworkId}`
-        ); /*/api/art */
+        );
         if (response.ok) {
           const artworkData = await response.json();
           setTitle(artworkData.title);
           setContent(artworkData.content);
           setAuthor(artworkData.author);
           setPostImage(artworkData.imageFile);
+          setImagePreview(
+            URL.createObjectURL(
+              new Blob([atob(artworkData.imageFile.split(",")[1])], {
+                type: "image/jpeg",
+              })
+            )
+          );
         } else {
           console.log("Something went wrong");
         }
@@ -58,43 +69,71 @@ const ArtworkUpdatePage = () => {
     const file = event.target.files[0];
     const base64 = await convertToBase64(file);
     setPostImage(base64);
+    setImagePreview(URL.createObjectURL(file));
   };
 
   return (
-    <>
-      <h1>Update ARTWORK</h1>
+    <Container maxWidth="md" sx={{ mt: 4 }}>
+      <h1 className="main-title">Update Artwork</h1>
       <form
         onSubmit={handleSubmit}
         style={{ display: "flex", flexDirection: "column" }}
       >
-        <label htmlFor="title">Title:</label>
-        <input
-          type="text"
-          id="title"
+        <TextField
+          label="Title"
+          variant="outlined"
           value={title}
           onChange={(event) => setTitle(event.target.value)}
+          sx={{ mb: 2 }}
         />
+        <label htmlFor="file-upload">
+          <input
+            type="file"
+            label="Image"
+            name="myFile"
+            id="file-upload"
+            accept=".jpeg, .png, .jpg"
+            onChange={(event) => handleFileUpload(event)}
+            style={{ display: "none" }}
+          />
+          <Button
+            component="span"
+            variant="outlined"
+            color="primary"
+            sx={{ mb: 2 }}
+          >
+            Change Image
+          </Button>
+        </label>
 
-        <label htmlFor="content">Content:</label>
-        <textarea
-          id="content"
+        {imagePreview && (
+          <img
+            src={imagePreview}
+            alt=""
+            style={{ maxWidth: "100%", marginTop: "8px" }}
+          />
+        )}
+
+        <TextField
+          label="Content"
+          multiline
+          rows={4}
+          variant="outlined"
           value={content}
           onChange={(event) => setContent(event.target.value)}
+          sx={{ mb: 2 }}
         />
 
-        <label htmlFor="image">Image</label>
-        <input
-          type="file"
-          label="Image"
-          name="myFile"
-          id="file-upload"
-          accept=".jpeg, .png, .jpg"
-          onChange={(event) => handleFileUpload(event)}
-        />
-
-        <button type="submit">Update</button>
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ width: "135px", height: "40px" }}
+        >
+          Update
+        </Button>
       </form>
-    </>
+    </Container>
   );
 };
 

@@ -9,6 +9,7 @@ import ContentDetail from "./pages/ContentDetail";
 import ArtworkUpdatePage from "./pages/UpdateContent";
 import PrivateRoute from "./components/PrivateRouting";
 import UserArtPage from "./pages/UserArtPage";
+import Error from "./pages/404";
 import { Container } from "@mui/material";
 
 function App() {
@@ -40,7 +41,7 @@ function App() {
             </PrivateRoute>
           }
         />
-        <Route path="*" element={<p>404</p>} />
+        <Route path="*" element={<Error />} />
       </Routes>
     </>
   );

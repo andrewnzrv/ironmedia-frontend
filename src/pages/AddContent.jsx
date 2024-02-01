@@ -3,16 +3,18 @@ import { AuthContext } from "../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import { Container } from "@mui/material";
-import Navbar from "../components/Navbar";
+import Typography from "@mui/material/Typography";
 
 const API_URL = import.meta.env.VITE_API_URL;
 
 const AddContent = () => {
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState(""); // Added state for content
+  const [content, setContent] = useState("");
   const [author, setAuthor] = useState("");
   const [imageFile, setPostImage] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
   const { fetchWithToken } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -21,11 +23,7 @@ const AddContent = () => {
     const createArtwork = { title, content, author, imageFile };
 
     try {
-      const response = await fetchWithToken(
-        `/blog`, // Fixed API URL
-        "POST",
-        createArtwork
-      );
+      const response = await fetchWithToken(`/blog`, "POST", createArtwork);
       if (response.status === 201) {
         const artContent = await response.json();
         console.log(artContent);
@@ -41,52 +39,62 @@ const AddContent = () => {
   const handleFileUpload = async (event) => {
     const file = event.target.files[0];
     const base64 = await convertToBase64(file);
-    //console.log(base64);
     setPostImage(base64);
+    setImagePreview(URL.createObjectURL(file));
   };
 
   return (
-    <>
-      <Container maxWidth="xl" className="container">
-        <h1>New Artwork</h1>
-        <form
-          onSubmit={handleSubmit}
-          action="submit"
-          style={{ display: "flex", flexDirection: "column" }}
+    <Container maxWidth="md" sx={{ mt: 4 }}>
+      <h1 className="main-title">New Artwork</h1>
+      <Box
+        component="form"
+        onSubmit={handleSubmit}
+        sx={{ display: "grid", gap: 2 }}
+      >
+        <TextField
+          label="Title"
+          variant="outlined"
+          value={title}
+          onChange={(event) => setTitle(event.target.value)}
+        />
+        <input
+          type="file"
+          name="myFile"
+          id="file-upload"
+          accept=".jpeg, .png, .jpg, .mp4"
+          onChange={(event) => handleFileUpload(event)}
+          style={{ display: "none" }}
+        />
+        <label htmlFor="file-upload">
+          <Button component="span" variant="outlined" color="primary">
+            Upload Image
+          </Button>
+        </label>
+        {imagePreview && (
+          <img
+            src={imagePreview}
+            alt="Uploaded Preview"
+            style={{ maxWidth: "100%", marginTop: "8px", borderRadius: "5px" }}
+          />
+        )}
+        <TextField
+          label="Content"
+          multiline
+          rows={4}
+          variant="outlined"
+          value={content}
+          onChange={(event) => setContent(event.target.value)}
+        />
+        <Button
+          type="submit"
+          variant="contained"
+          color="primary"
+          sx={{ width: "135px", height: "40px" }}
         >
-          <label htmlFor="title">Title:</label>
-          <input
-            type="text"
-            id="title"
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
-          <label htmlFor="image">Image</label>
-          <input
-            type="file"
-            label="Image"
-            name="myFile"
-            id="file-upload"
-            accept=".jpeg, .png, .jpg, .mp4"
-            onChange={(event) => handleFileUpload(event)}
-          />
-          <label htmlFor="content">Content:</label> {/* Added content input */}
-          <textarea
-            id="content"
-            value={content}
-            onChange={(event) => setContent(event.target.value)}
-          />
-          <label htmlFor="author">Author:</label>
-          <input
-            type="text"
-            id="author"
-            value={author}
-            onChange={(event) => setAuthor(event.target.value)}
-          />
-          <button type="submit">SUBMIT</button>
-        </form>
-      </Container>
-    </>
+          Submit
+        </Button>
+      </Box>
+    </Container>
   );
 };
 
