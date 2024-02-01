@@ -1,8 +1,10 @@
 import { useContext, useState } from "react";
 import SingleCommentEdit from "./SingleCommentEdit";
 import { AuthContext } from "../contexts/AuthContext";
-import { Box } from "@mui/material";
+import { Box, IconButton } from "@mui/material";
 import styles from "../styles/SingleComment.module.css";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const SingleComment = ({ comment, handleDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
@@ -25,18 +27,27 @@ const SingleComment = ({ comment, handleDelete }) => {
       ) : (
         <Box className={styles.comment}>
           <Box>
-            <p>
-              {comment.user.username}: {commentContent}
-            </p>
+            <p className={styles.username}>{comment.user.username}</p>
+            <p className={styles.commentContent}>{commentContent}</p>
           </Box>
           {comment.user._id === userId ? (
-            <Box>
-              <button type="button" onClick={() => handleDelete(comment._id)}>
-                Delete
-              </button>
-              <button type="button" onClick={() => handleEdit(comment._id)}>
-                Edit
-              </button>
+            <Box className={styles.buttons}>
+              <IconButton
+                size="small"
+                aria-label="edit"
+                type="button"
+                onClick={() => handleEdit(comment._id)}
+              >
+                <EditIcon fontSize="inherit" />
+              </IconButton>
+              <IconButton
+                size="small"
+                aria-label="delete"
+                type="button"
+                onClick={() => handleDelete(comment._id)}
+              >
+                <DeleteIcon fontSize="inherit" />
+              </IconButton>
             </Box>
           ) : null}
         </Box>

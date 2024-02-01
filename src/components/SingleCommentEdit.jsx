@@ -1,6 +1,8 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import { TextField } from "@mui/material";
+import { Box, IconButton, TextField } from "@mui/material";
+import SaveIcon from "@mui/icons-material/Save";
+import styles from "../styles/SingleCommentEdit.module.css";
 
 const SingleCommentEdit = ({
   setIsEditing,
@@ -27,21 +29,28 @@ const SingleCommentEdit = ({
   };
 
   return (
-    <>
+    <Box>
       <form className="form" onSubmit={handleSubmit}>
-        <TextField
-          id="standard-basic"
-          variant="standard"
-          name="editComment"
-          type="text"
-          value={commentContent}
-          onChange={handleInput}
-        />
-        <button className="input-btn" type="submit">
-          Save
-        </button>
+        <Box className={styles.editComment}>
+          <TextField
+            id="standard-basic"
+            variant="standard"
+            name="editComment"
+            type="text"
+            value={commentContent}
+            onChange={handleInput}
+          />
+          <IconButton
+            className={styles.saveBtn}
+            size="small"
+            aria-label="save"
+            type="submit"
+          >
+            <SaveIcon fontSize="inherit" />
+          </IconButton>
+        </Box>
       </form>
-    </>
+    </Box>
   );
 };
 

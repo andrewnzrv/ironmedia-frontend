@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import SingleComment from "./SingleComment";
 import { AuthContext } from "../contexts/AuthContext";
-import { Box, TextField } from "@mui/material";
+import { Box, Input } from "@mui/material";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import styles from "../styles/CommentSection.module.css";
@@ -80,10 +80,8 @@ const CommentSection = () => {
             style={{ display: "flex", flexDirection: "column", width: "500px" }}
           >
             <Box className={styles.newComment}>
-              <TextField
-                id="standard-basic"
-                label="Add a comment..."
-                variant="standard"
+              <Input
+                placeholder="Add a comment..."
                 value={content}
                 onChange={(event) => setContent(event.target.value)}
               />
