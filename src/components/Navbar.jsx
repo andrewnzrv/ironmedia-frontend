@@ -7,7 +7,6 @@ import styles from "../styles/Nav.module.css";
 const Navbar = () => {
   const { isAuthenticated, username, logout, userId } = useContext(AuthContext);
 
-
   return (
     <div className="navbar">
       <div className="main-nav">
@@ -18,7 +17,7 @@ const Navbar = () => {
           Add New Artwork
         </Link>
         <Link className={styles.navLink} to="/about">
-          About us
+          About
         </Link>
       </div>
       <div className="login">
