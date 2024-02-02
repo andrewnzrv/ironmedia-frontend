@@ -1,4 +1,4 @@
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../contexts/AuthContext";
 import Button from "@mui/material/Button";
@@ -52,6 +52,7 @@ const ArtworkDetailPage = () => {
               <Box className={styles.artwork}>
                 <img className={styles.img} src={artwork.imageFile} />
                 <Box className={styles.artworkInfo}>
+                  <p className={styles.author}>{artwork.author.username}</p>
                   <h1>{artwork.title}</h1>
                   <p>{artwork.content}</p>
                 </Box>

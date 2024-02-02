@@ -12,6 +12,11 @@
   width: 100%;
 }
 
+.author {
+  margin: 16px 0 0 0;
+  font-weight: 500;
+}
+
 .artworkButtons {
   display: flex;
   gap: 20px;
@@ -19,6 +24,7 @@
 
 h1 {
   font-size: 1.2rem;
+  margin: 4px 0 16px 0;
 }
 
 .comments {

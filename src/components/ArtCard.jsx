@@ -27,7 +27,11 @@ const ArtCard = ({ art }) => {
         <CardHeader
           avatar={<Avatar sx={{ bgcolor: blueGrey[300] }}></Avatar>}
           action={<IconButton></IconButton>} //add icon if u want
-          title={<span style={{ color: "black" }}>{art.title}</span>}
+          title={
+            <span style={{ color: "black" }}>
+              {art.title} by {art.author.username}
+            </span>
+          }
           //subheader={<span style={{ color: "black" }}>{username}</span>}
         />
         <CardMedia
